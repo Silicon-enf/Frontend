@@ -19,10 +19,10 @@
 <section class="signup">
     <div class="container">
 
-        @if (!string.IsNullOrEmpty(ViewData["StatusMessage"]?.ToString()))
+        @if (!string.IsNullOrEmpty(ErrorMessage))
         {
             <div class="alert alert-danger">
-                @ViewData["StatusMessage"]
+                @ErrorMessage
             </div>
         }
 
@@ -79,6 +79,8 @@
 
 
 @code {
+    private string? ErrorMessage { get; set; }; 
+
         [SupplyParameterFromForm]
         private InputModel Input { get; set; } = new();
 
@@ -88,7 +90,14 @@
         public async Task RegisterUser(EditContext editContext)
         {
 
-            var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+            var user = new ApplicationUser 
+            { 
+                FirstName = Input.FirstName,
+                LastName = Input.LastName,
+                UserName = Input.Email, 
+                Email = Input.Email 
+            
+            };
 
             var result = await UserManager.CreateAsync(user, Input.Password);
 
