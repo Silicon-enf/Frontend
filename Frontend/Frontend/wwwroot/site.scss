@@ -1,0 +1,47 @@
+@import 'scss/core/_colors.scss';
+@import 'scss/core/_common.scss';
+@import 'scss/core/_fonts.scss';
+@import 'scss/core/_mixins.scss';
+@import 'scss/core/_variables.scss';
+
+@import 'scss/components/_alerts.scss';
+@import 'scss/components/_buttons.scss';
+@import 'scss/components/_containers.scss';
+@import 'scss/components/_forms.scss';
+@import 'scss/components/_links.scss';
+@import 'scss/components/_typography.scss';
+
+
+@import 'scss/sections/_SubscribeToNewsletter.scss';
+@import 'scss/sections/_download-our-app.scss';
+@import 'scss/sections/_features.scss';
+@import 'scss/sections/_footer.scss';
+@import 'scss/sections/_header.scss';
+@import 'scss/sections/_integrate-top-work-tools.scss';
+@import 'scss/sections/_lightanddarktheme.scss';
+@import 'scss/sections/_manage_your_work.scss';
+@import 'scss/sections/_showcase.scss';
+@import 'scss/sections/_signin.scss';
+@import 'scss/sections/_signup.scss';
+@import 'scss/sections/_account_profile.scss';
+@import 'scss/sections/_account_details.scss';
+@import 'scss/sections/_courses.scss';
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
