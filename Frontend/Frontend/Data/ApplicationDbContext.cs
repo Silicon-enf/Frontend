@@ -5,5 +5,6 @@ namespace Frontend.Data
 {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<ApplicationUser>(options)
     {
+        public DbSet<AdressEntity> Adresses { get; set; }
     }
 }

@@ -6,6 +6,7 @@
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.WebUtilities
 @using Frontend.Data
+@using Microsoft.EntityFrameworkCore
 @using WebApp.Filters
 
 @inject UserManager<ApplicationUser> UserManager
@@ -13,7 +14,7 @@
 @inject ILogger<Register> Logger
 @inject NavigationManager NavigationManager
 
-<PageTitle>Register</PageTitle>
+<PageTitle>Sign Up</PageTitle>
 
 
 <section class="signup">
@@ -28,7 +29,6 @@
 
         <EditForm Model="Input" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="RegisterUser" FormName="signup" novalidate>
             <DataAnnotationsValidator/>
-            <AntiforgeryToken/>
             
             <h1>Create Account</h1>
             <p>Already have an account? <a href="signin">Sign in here</a></p>
@@ -79,25 +79,31 @@
 
 
 @code {
-    private string? ErrorMessage { get; set; }; 
+    private string? ErrorMessage { get; set; } 
 
-        [SupplyParameterFromForm]
-        private InputModel Input { get; set; } = new();
+    [SupplyParameterFromForm]
+    private InputModel Input { get; set; } = new();
 
-        [SupplyParameterFromQuery]
-        private string? ReturnUrl { get; set; }
+    [SupplyParameterFromQuery]
+    private string? ReturnUrl { get; set; }
 
-        public async Task RegisterUser(EditContext editContext)
-        {
+    public async Task RegisterUser(EditContext editContext)
+    {
 
-            var user = new ApplicationUser 
+        var user = new ApplicationUser 
             { 
                 FirstName = Input.FirstName,
                 LastName = Input.LastName,
                 UserName = Input.Email, 
                 Email = Input.Email 
-            
+
             };
+
+        if(await UserManager.Users.AnyAsync(x => x.Email == user.Email))
+        {
+            ErrorMessage = "Email already in use";
+            return;
+        }
 
             var result = await UserManager.CreateAsync(user, Input.Password);
 

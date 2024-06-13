@@ -91,7 +91,8 @@ form{
         width: auto;
     }
 
-    .field-validation-error{
+    .field-validation-error,
+    .validation-message {
         font-size: 14px;
         font-weight: 400 !important;
         color: var(--color-danger-dark);
